@@ -1,0 +1,3 @@
+247428@student.pwr.edu.pl Temat "asdasd"
+tomasz.urban.116@gmail.com Wiadomosc "tematyczna trescwiadomosci"
+247428@student.pwr.edu.pl Temat2 "Nowa wiadomosc"
