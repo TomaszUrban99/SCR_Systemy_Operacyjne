@@ -1,0 +1,6 @@
+#!/bin/bash
+
+echo Proces A- START ...
+echo Uruchamianie procesu B ...
+
+./procesB.sh
