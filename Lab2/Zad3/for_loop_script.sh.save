@@ -1,0 +1,17 @@
+#!/bin/bash
+
+for i in "$@"
+do 
+	if [ -f $i ]
+	then
+		echo To jest plik
+	elif [ -d $i ]
+	then
+		if [ $i ]
+		then
+			echo To jest pusty kataog
+		else
+			echo To jest katalog
+		fi
+	fi
+done
