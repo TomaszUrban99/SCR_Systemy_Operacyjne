@@ -15,9 +15,6 @@ typedef struct prime_numbers_sums_t {
     int found_flag;
     long suma;
 
-    pthread_mutex_t muteks_pobierania;
-    pthread_mutex_t muteks_sumowania;
-
 } prime_numbers_sums;
 
 prime_numbers_sums prime_struct;
@@ -34,9 +31,6 @@ void set_prime_number_structure (prime_numbers_sums *prime_struct,
     prime_struct->znalezione = 0;
     prime_struct->suma = 0;
     prime_struct->found_flag = 0;
-
-    pthread_mutex_init(&prime_struct->muteks_pobierania, NULL);
-    pthread_mutex_init(&prime_struct->muteks_sumowania, NULL);
 }
 
 /* Check whether given number is a prime number */
@@ -84,13 +78,11 @@ void *count_prime_number_sum_multi (){
     /* --------------------------------------------------- */
     /*           Read number to check                      */
     /* --------------------------------------------------- */
-    
-    pthread_mutex_lock(&prime_struct.muteks_pobierania);
+
         /* Number to check */
         int number_to_check = prime_struct.sprawdz;
         /* Next number should be checked */
         prime_struct.sprawdz++;
-    pthread_mutex_unlock(&prime_struct.muteks_pobierania);
 
     /* ---------------------------------------------------- */
     /* Variable to store sum                                */
@@ -98,10 +90,9 @@ void *count_prime_number_sum_multi (){
     int a; 
 
     if ( (a = is_prime_number(number_to_check)) > 0){
-
-        pthread_mutex_lock(&prime_struct.muteks_sumowania);
-
+         
             /* Add to sum */
+
             /* Check whether enough prime numbers have been found */
             if (prime_struct.znalezione < prime_struct.N){
                 prime_struct.suma +=  a;
@@ -112,8 +103,6 @@ void *count_prime_number_sum_multi (){
                 prime_struct.found_flag = 1;
             }
             }
-             
-        pthread_mutex_unlock(&prime_struct.muteks_sumowania);
     }    
     }
 
