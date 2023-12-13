@@ -7,7 +7,6 @@
 
 /* Structure */
 typedef struct prime_numbers_sums_t {
-
     unsigned int N;
     unsigned int M;
     unsigned int K;
@@ -35,7 +34,6 @@ void set_prime_number_structure (prime_numbers_sums *prime_struct,
     prime_struct->znalezione = 0;
     prime_struct->suma = 0;
     prime_struct->found_flag = 0;
-    prime_struct->count = 0;
 
     pthread_mutex_init(&prime_struct->muteks_pobierania, NULL);
     pthread_mutex_init(&prime_struct->muteks_sumowania, NULL);
@@ -92,14 +90,15 @@ void *count_prime_number_sum_multi (){
         int number_to_check = prime_struct.sprawdz;
         /* Next number should be checked */
         prime_struct.sprawdz++;
+
+        int a = is_prime_number(number_to_check);
     pthread_mutex_unlock(&prime_struct.muteks_pobierania);
 
     /* ---------------------------------------------------- */
     /* Variable to store sum                                */
     /* ---------------------------------------------------- */
     
-    int a = is_prime_number(number_to_check);
-    
+
     if ( a > 0){
 
         pthread_mutex_lock(&prime_struct.muteks_sumowania);
