@@ -21,3 +21,15 @@ int read_users ( char *filename, users user_array[], int users_array_size){
 
     return users_array_size;
 }
+
+/* Print users stored in array of structures users */
+void print_users ( users *users_array, int users_array_size ){
+    
+    for ( int i = 0; i < users_array_size; ++i )
+    {
+        printf("%d \t %s \t %s \t %s\n", users_array[i].user_id, users_array[i].hashed_password, 
+            users_array[i].mail, users_array[i].user_name );
+    }
+
+}
+

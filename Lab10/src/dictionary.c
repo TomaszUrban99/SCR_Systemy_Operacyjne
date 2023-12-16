@@ -1,19 +1,65 @@
 #include "dictionary.h"
 
-int read_dictionary ( char *filename, char **passwords, int dictionary_size){
+int intitialize_dictionary ( struct dictionary_struct *dictionary){
+
+	dictionary->dictionary_size = DICTIONARY_SIZE;
+
+    dictionary->word_list = (char **) malloc (DICTIONARY_SIZE * sizeof(char*));
+
+	if ( dictionary->word_list == NULL){
+		perror("Failed to allocate memory");
+		return -1;
+	}
+    
+    for ( int i = 0; i < DICTIONARY_SIZE; ++i ){
+                    dictionary->word_list[i] = (char *) malloc(PASSWORD_LENGTH * sizeof(char));
+    }
+
+
+	return 0;
+
+}
+
+/*!
+	\brief Read words to dictionary from list
+*/
+int read_dictionary ( char *filename, struct dictionary_struct *dictionary){
 
     /* Create new pointer and open file */
     FILE *ptr;
     ptr = fopen ( filename, "r" );
     int error_flag;
 
-    for ( int i = 0; i < dictionary_size; ++i ){
-        error_flag = fscanf(ptr, "%s\n", passwords[i]);
-        if ( error_flag < 1)
-            return i;
+    for ( int i = 0; i < dictionary->dictionary_size; ++i ){
+        error_flag = fscanf(ptr, "%s\n", dictionary->word_list[i]);
+        if ( error_flag < 1){
+			dictionary->dictionary_size = i;
+			return i;
+		}           
+    }
+    return dictionary->dictionary_size;
+}
+
+/*!
+	\brief 
+*/
+void print_dictionary ( struct dictionary_struct *dictionary ){
+	
+	for ( int i = 0; i < dictionary->dictionary_size; ++i ){
+        printf("%s\n", dictionary->word_list[i]);
+    }
+}
+
+/*!
+	\brief 
+*/
+void delete_structure ( struct dictionary_struct *dictionary ){
+
+    for ( int i = 0; i < DICTIONARY_SIZE; ++i ){
+        free(dictionary->word_list[i]);
     }
 
-    return dictionary_size;
+	free(dictionary->word_list);
 }
 
 /* Hash passwords */
