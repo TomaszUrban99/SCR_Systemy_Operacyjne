@@ -31,12 +31,9 @@ int main ( int argc, char **argv ){
     intitialize_dictionary(&dictionary);
     read_dictionary(argv[2],&dictionary);
 
-    test_postfixes(&dictionary);
+    int break_index = break_password_wordlist(&dictionary, user_array, number_of_users, break_pass);
 
-
-    /*int break_index = break_password_wordlist(&dictionary, user_array, number_of_users, break_pass);
-
-    print_breaked_passwords(break_pass, number_of_users);*/
+    print_breaked_passwords(break_pass, number_of_users);
 
     /*----------------- TIDY UP, FREE EXPLICITLY ALLOCATED MEMORY ------------------------------------ */
     free(break_pass);

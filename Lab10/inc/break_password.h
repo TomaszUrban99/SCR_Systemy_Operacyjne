@@ -13,7 +13,8 @@
 struct breaked_password {
     
     users *user;
-    char *breaked_password;
+    char breaked_password[PASSWORD_LENGTH];
+    int breaked_password_flag;
 
 };
 
