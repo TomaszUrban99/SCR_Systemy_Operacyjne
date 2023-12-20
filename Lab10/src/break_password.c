@@ -34,6 +34,51 @@ int break_password_wordlist (   struct dictionary_struct *dictionary, users *use
     return breaked_passwords;
 }
 
+void append_postfix ( char *password, int password_size, int postfix ){
+
+    char postfix_array[3];
+    sprintf(postfix_array, "%d", postfix);
+
+    strcat(password, postfix_array);
+}
+
+void append_prefix ( char *password, int password_size, int prefix ){
+
+    char prefix_array[PASSWORD_LENGTH];
+    sprintf(prefix_array, "%d", prefix);
+    strcat(prefix_array, password);
+    strcpy(password,prefix_array);
+}
+
+void modify_dictionary_word ( char *modified_word, char *dictionary_word, int *prefix, int *postfix){
+
+    strcpy(modified_word, dictionary_word);
+
+    if ( prefix != NULL ){
+        append_prefix( modified_word, strlen(modified_word), *prefix );
+    }
+    if ( postfix != NULL ){
+        append_postfix( modified_word, strlen(modified_word), *postfix );
+    }
+
+    printf("%s\n", modified_word);
+}
+
+void test_postfixes( struct dictionary_struct *dictionary ){
+
+    int *prefix;
+    int *postfix;
+
+    /* Prefixes */
+    for ( int i = 0; i < 20; ++i ){
+        prefix = &i;
+        postfix = &i;
+        char modified_word[PASSWORD_LENGTH];
+        modify_dictionary_word(modified_word, dictionary->word_list[0], prefix, postfix);
+    }
+}
+
+
 
 void print_breaked_passwords ( struct breaked_password* breaked_pass, int size_break ){
 
