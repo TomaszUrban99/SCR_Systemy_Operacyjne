@@ -4,77 +4,66 @@ int break_password_wordlist (   struct dictionary_struct *dictionary, users *use
                                 struct breaked_password *breaked_password_list){
 
     char hashed_password[PASSWORD_LENGTH];
-    char modified_word[PASSWORD_LENGTH];
+    
     
     int breaked_passwords = 0;
     int last_found = -1;
 
     for ( int j = 0; j < user_array_size; ++j ) {
         
-        
-
         for ( int i = 0; i < dictionary->dictionary_size; ++i){
             
-            for ( int k = -1; k < 100; ++k ){
-                for ( int l = -1; l < 100; ++l){
-                    
-                    
-                    if ( l == -1 && k == -1 ){
-                        bytes2md5( dictionary->word_list[i], strlen(dictionary->word_list[i]), hashed_password);
-
-                        if ( strcmp(user[j].hashed_password, hashed_password) == 0 ){
-
-                            strcpy(breaked_password_list[j].breaked_password,dictionary->word_list[i]);
-                            breaked_password_list[j].user = &user[j];
+            char modified_word[PASSWORD_LENGTH];
             
-                            printf("%s%s%s\n", breaked_password_list[j].breaked_password, " ",  breaked_password_list[j].user->user_name);
-                        
-                            breaked_passwords++;
-                            last_found = j;
-                    
-                        /*End looking for given user*/
-                        k = 100;
-                        l = 100;
-                        i = dictionary->dictionary_size;
+            for ( int up_low = 0; up_low < 3; up_low++){
+                
+                /* Copy dictionary word */
+                char modified_word_2[PASSWORD_LENGTH];  
+                strcpy(modified_word_2, dictionary->word_list[i]);
+      
+                if ( up_low == 1)
+                    upper_first_dictionary_word(modified_word_2);
+                if ( up_low == 2)
+                    upper_dictionary_word(modified_word_2, strlen(modified_word_2));
 
-                        breaked_password_list[j].breaked_password_flag = 1;
-                    }       
+                for ( int k = -1; k < POSTFIXES; ++k ){
+
+                    for ( int l = -1; l < PREFIXES; ++l){
+
+                    /* Different possibilities */
+                    if ( l == -1 && k == -1 ){
+                            modify_dictionary_word(modified_word,modified_word_2,NULL,NULL);
+                    } else if ( l == -1 ){
+                            modify_dictionary_word(modified_word,modified_word_2,NULL,&k);
+                    } else if ( k == -1 ){
+                            modify_dictionary_word(modified_word, modified_word_2, &l, NULL);
+                    } else {
+                            modify_dictionary_word(modified_word, modified_word_2, &l, &k);
                     }
-                    else {
-                        
-                        if ( l == -1 ){
-                            modify_dictionary_word(modified_word,dictionary->word_list[i],NULL,&k);
-                        } else if ( k == -1 ){
-                            modify_dictionary_word(modified_word, dictionary->word_list[i], &l, NULL);
-                        } else {
-                            modify_dictionary_word(modified_word, dictionary->word_list[i], &l, &k);
-                        }
 
-                        bytes2md5( modified_word, strlen(modified_word), hashed_password);
+                    /* ---------------------- HASH MODIFIED WORD ------------------------------ */
+                    bytes2md5( modified_word, strlen(modified_word), hashed_password);
 
                     if ( strcmp(user[j].hashed_password, hashed_password) == 0 ){
 
                         strcpy(breaked_password_list[j].breaked_password,modified_word);
                         breaked_password_list[j].user = &user[j];
-            
-                        printf("%s%s%s\n", breaked_password_list[j].breaked_password, " ",  breaked_password_list[j].user->user_name);
                         
                         breaked_passwords++;
                         last_found = j;
                     
                         /*End looking for given user*/
-                        k = 100;
-                        l = 100;
+                        k = POSTFIXES;
+                        l = PREFIXES;
+                        up_low = 3;
                         i = dictionary->dictionary_size;
 
                         breaked_password_list[j].breaked_password_flag = 1;
-                    }           
-                    }
-
-                          
+                    }                                    
                 }
-            }       
-        }   
+                }       
+            }
+        }
         
         if ( last_found != j ){
                 breaked_password_list[j].user = &user[j];
@@ -86,6 +75,19 @@ int break_password_wordlist (   struct dictionary_struct *dictionary, users *use
 
     return breaked_passwords;
 }
+
+void upper_first_dictionary_word ( char *password ){
+    password[0] = toupper(password[0]);
+}
+
+void upper_dictionary_word ( char *password, int password_size ){
+
+for (int i = 0; i < password_size; ++i ){
+    password[i] = toupper(password[i]);
+}
+}
+
+
 
 void append_postfix ( char *password, int password_size, int postfix ){
 

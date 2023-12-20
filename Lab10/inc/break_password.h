@@ -6,9 +6,13 @@
 #include <unistd.h>
 #include <openssl/evp.h>
 #include <string.h>
+#include <ctype.h>
 
 #include "dictionary.h"
 #include "user.h"
+
+#define POSTFIXES 100
+#define PREFIXES 100
 
 struct breaked_password {
     
@@ -26,6 +30,10 @@ void append_postfix ( char *password, int password_size, int postfix );
 void append_prefix ( char *password, int password_size, int prefix );
 
 void modify_dictionary_word ( char *modified_word, char *dictionary_word, int *prefix, int *postfix);
+
+void upper_first_dictionary_word ( char *password );
+
+void upper_dictionary_word ( char *password, int password_size );
 
 void test_postfixes( struct dictionary_struct *dictionary );
 

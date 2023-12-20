@@ -15,8 +15,8 @@ int main ( int argc, char **argv ){
 
     /* -------------- READ USERS -------------------------------------------------------------------- */
 
-    users user_array[20];
-    int number_of_users = read_users(argv[1], user_array, 20);
+    users user_array[30];
+    int number_of_users = read_users(argv[1], user_array, 30);
 
     /*--------------- ALLOCATE MEMORY FOR ARRAY OF STRUCT BREAKED_PASSWORD --------------------------  */
     
