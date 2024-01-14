@@ -8,7 +8,7 @@
 #include <string.h>
 
 #define PASSWORD_LENGTH 33
-#define DICTIONARY_SIZE 1000
+#define DICTIONARY_SIZE 2000000
 
 /*!
 	\brief

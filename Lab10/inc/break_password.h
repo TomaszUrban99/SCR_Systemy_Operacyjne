@@ -17,6 +17,8 @@
 struct breaked_password {
     
     users *user;
+    /* Variable to store number of users left */
+    int current_user;
     char breaked_password[PASSWORD_LENGTH];
     int breaked_password_flag;
 

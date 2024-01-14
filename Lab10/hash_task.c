@@ -7,9 +7,18 @@
 #include "dictionary.h"
 #include "break_password.h"
 
+
 struct dictionary_struct dictionary;
 
 struct breaked_password *break_pass;
+
+void* producer ( void* arg ){
+
+}
+
+void* consumer ( void* arg ){
+    
+}
 
 int main ( int argc, char **argv ){
 
@@ -30,6 +39,8 @@ int main ( int argc, char **argv ){
 
     intitialize_dictionary(&dictionary);
     read_dictionary(argv[2],&dictionary);
+
+    printf("%s\n", "Read dictionary");
 
     int break_index = break_password_wordlist(&dictionary, user_array, number_of_users, break_pass);
 

@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/task_scheduling.dir/src/main.cpp.o -o task_scheduling  librecord.a 

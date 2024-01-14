@@ -17,10 +17,6 @@ int read_users ( char *filename, users user_array[], int users_array_size){
         if ( error_flag < 1){
             return i;
         }  
-        
-
-
-
 
     }
 
