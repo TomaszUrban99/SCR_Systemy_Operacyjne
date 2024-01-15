@@ -7,10 +7,20 @@
 
 int main(int argc, char **argv){
 
-    record new_record ( 1, 2, 3, "tusk", 4);
+    /* Check number of input arguments */
+    if ( argc < 1 ){
+        perror("Wrong number of input arguments");
+        exit(1);
+    }
 
-    std::cout << new_record.get_minute() << " " << new_record.get_number_of_stones() 
-    << " " << new_record.get_stone_name() << " " << new_record.get_stone_weight() << std::endl;
+    log new_log;
+    
+    if ( new_log.read_log(argv[1]) == -1 ){
+        perror("Failed to read log");
+        exit(2);
+    }
+
+    std::cout << new_log;
 
     return 0;
 }

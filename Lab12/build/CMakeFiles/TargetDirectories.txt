@@ -1,4 +1,5 @@
 /home/tomasz/Documents/Studia/SCR_Systemy_Operacyjne/Lab12/build/CMakeFiles/record.dir
+/home/tomasz/Documents/Studia/SCR_Systemy_Operacyjne/Lab12/build/CMakeFiles/log.dir
 /home/tomasz/Documents/Studia/SCR_Systemy_Operacyjne/Lab12/build/CMakeFiles/task_scheduling.dir
 /home/tomasz/Documents/Studia/SCR_Systemy_Operacyjne/Lab12/build/CMakeFiles/edit_cache.dir
 /home/tomasz/Documents/Studia/SCR_Systemy_Operacyjne/Lab12/build/CMakeFiles/rebuild_cache.dir

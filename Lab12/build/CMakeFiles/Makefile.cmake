@@ -40,5 +40,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/record.dir/DependInfo.cmake"
+  "CMakeFiles/log.dir/DependInfo.cmake"
   "CMakeFiles/task_scheduling.dir/DependInfo.cmake"
   )

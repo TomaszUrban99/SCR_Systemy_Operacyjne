@@ -92,6 +92,7 @@ task_scheduling_EXTERNAL_OBJECTS =
 
 task_scheduling: CMakeFiles/task_scheduling.dir/src/main.cpp.o
 task_scheduling: CMakeFiles/task_scheduling.dir/build.make
+task_scheduling: liblog.a
 task_scheduling: librecord.a
 task_scheduling: CMakeFiles/task_scheduling.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/tomasz/Documents/Studia/SCR_Systemy_Operacyjne/Lab12/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable task_scheduling"
