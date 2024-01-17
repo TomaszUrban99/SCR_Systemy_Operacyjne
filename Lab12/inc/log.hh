@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <cstdio>
+#include <list>
 
 #include "record.hh"
 
@@ -14,6 +15,8 @@ class log {
     int number_of_records = 0;
 
     record list_of_records[SIZE_OF_LOG];
+
+    std::list<record> list_of_rec;
 
     public:
 
