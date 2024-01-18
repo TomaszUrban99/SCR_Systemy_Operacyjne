@@ -39,6 +39,11 @@ class log {
     */
     void print_log ();
 
+    /*!
+        \brief Return reference to list
+    */
+    std::list<record> &get_list_of_rec () { return list_of_rec; }
+
 };
 
 std::istream& operator>>(std::istream &input, log &new_log );

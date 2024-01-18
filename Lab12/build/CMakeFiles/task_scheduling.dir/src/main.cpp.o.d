@@ -150,7 +150,11 @@ CMakeFiles/task_scheduling.dir/src/main.cpp.o: \
  /usr/include/c++/11/fstream /usr/include/c++/11/bits/codecvt.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
- /usr/include/c++/11/bits/fstream.tcc \
+ /usr/include/c++/11/bits/fstream.tcc /usr/include/c++/11/list \
+ /usr/include/c++/11/bits/stl_list.h \
+ /usr/include/c++/11/bits/allocated_ptr.h \
+ /usr/include/c++/11/ext/aligned_buffer.h \
+ /usr/include/c++/11/bits/list.tcc \
  /home/tomasz/Documents/Studia/SCR_Systemy_Operacyjne/Lab12/inc/record.hh \
  /usr/include/string.h /usr/include/strings.h \
  /home/tomasz/Documents/Studia/SCR_Systemy_Operacyjne/Lab12/inc/record.hh

@@ -18,13 +18,14 @@ int log::read_log( char *filename ){
 
             /* Implement list */
             fscanf(file_stream, "%d%s%d%d", 
-                &list_of_records[number_of_records].get_wheelbarrow_number(), 
-                list_of_records[number_of_records].get_stone_name(),
-                &list_of_records[number_of_records].get_stone_weight(), 
-                &list_of_records[number_of_records].get_number_of_stones());
+                &new_record.get_wheelbarrow_number(), new_record.get_stone_name(),
+                &new_record.get_stone_weight(), &new_record.get_number_of_stones());
 
             /* Set minute in record */
-            list_of_records[number_of_records].set_minute(minute);
+            new_record.set_minute(minute);
+
+            /* Push record to the end of list */
+            list_of_rec.push_back(new_record);
         
             get_char = getc(file_stream);
 
@@ -45,12 +46,13 @@ std::istream& operator>>(std::istream &input, log &new_log ){
 }
 
 std::ostream& operator<<(std::ostream &output, log &log_to_print){
-    
-    int size_of_log = log_to_print.get_number_of_records();
 
-    for ( int i = 0; i < size_of_log; ++i ){
-        output << log_to_print[i];
-    }
+    std::list<record>::iterator pointer;
+
+    for ( pointer = log_to_print.get_list_of_rec().begin(); 
+            pointer != log_to_print.get_list_of_rec().end(); ++pointer  ){
+                output << *pointer;
+            }
 
     return output;
 }
